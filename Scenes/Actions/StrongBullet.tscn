@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/Actions/Bullet.tscn" type="PackedScene" id=1]
+
+[node name="StrongBullet" instance=ExtResource( 1 )]
+scale = Vector2( 2, 1 )
+speed = 300
+flinchAmount = 2.0
+damage = 5

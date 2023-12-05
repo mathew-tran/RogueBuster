@@ -1,0 +1,570 @@
+[gd_scene load_steps=30 format=2]
+
+[ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Art/Fonts/PriceDownFont.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Scripts/UI/ActionUI.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/Level/GameManager.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/Level/RestartButton.gd" type="Script" id=7]
+[ext_resource path="res://Assets/Art/Sprites/bullet.png" type="Texture" id=8]
+[ext_resource path="res://Scripts/Level/SpawnPoints.gd" type="Script" id=9]
+[ext_resource path="res://Scenes/PlayerItems/Stat Buffs/SpawnPoint.gd" type="Script" id=10]
+[ext_resource path="res://Levels/Game Start Button.gd" type="Script" id=11]
+[ext_resource path="res://Assets/Art/Sprites/black.png" type="Texture" id=12]
+[ext_resource path="res://Sounds/Pickup_Coin17.wav" type="AudioStream" id=13]
+
+[sub_resource type="Animation" id=1]
+resource_name = "FadeOut"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 2, 2.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 32, 32 ), Vector2( 32, 32 ), Vector2( 1e-05, 1e-05 ) ]
+}
+
+[sub_resource type="AnimatedTexture" id=2]
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0, 1, 0.133333, 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="Animation" id=5]
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 32, -16 ), Vector2( 32, -8.211 ), Vector2( 32, -16 ) ]
+}
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 1, 0.72549, 0, 1 )
+
+[sub_resource type="Animation" id=7]
+tracks/0/type = "value"
+tracks/0/path = NodePath("ProgressBar:custom_styles/fg")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0237895, 0.249666 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ SubResource( 3 ), SubResource( 6 ), SubResource( 3 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ProgressBar:rect_rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.105756, 0.249947 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 2.0, 0.0 ]
+}
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 1, 0.819608, 0, 1 )
+
+[sub_resource type="Animation" id=9]
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 152, -56 ), Vector2( 152, -50 ), Vector2( 152, -56 ) ]
+}
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0, 1, 0.764706, 1 )
+
+[sub_resource type="Animation" id=11]
+tracks/0/type = "value"
+tracks/0/path = NodePath("ProgressBar:custom_styles/fg")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0736867, 0.256557 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ SubResource( 10 ), SubResource( 8 ), SubResource( 10 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ProgressBar:rect_rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0749108, 0.256312 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 2.0, 0.0 ]
+}
+
+[sub_resource type="StyleBoxFlat" id=12]
+bg_color = Color( 1, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=13]
+bg_color = Color( 1, 0.380392, 0.380392, 1 )
+
+[sub_resource type="Animation" id=14]
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:rect_position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 2.79397e-07, 0.2, 0.4 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath(".:rect_position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 10, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 2.79397e-07, 0.2, 0.4 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("ProgressBar:rect_rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 0.6, -0.25, 0, 0.25, 0, 0.6, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.2, 0.3, 0.4 )
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("ProgressBar:custom_styles/fg")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.200497, 0.201231, 0.400014 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ SubResource( 12 ), SubResource( 12 ), SubResource( 13 ), SubResource( 12 ) ]
+}
+
+[sub_resource type="Animation" id=15]
+
+[sub_resource type="Animation" id=16]
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0.5, -0.25, 0, 0.25, 0, 1e-05, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0.5, -0.25, 0, 0.25, 0, 1e-05, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5 )
+}
+
+[sub_resource type="Animation" id=17]
+tracks/0/type = "bezier"
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0.2, -0.25, 0, 0.25, 0, 0.1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0.2, -0.25, 0, 0.25, 0, 0.1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5 )
+}
+
+[node name="GameManager" type="Node2D" groups=[
+"manager",
+]]
+script = ExtResource( 6 )
+
+[node name="LevelObject" type="Node" parent="."]
+process_priority = 200
+
+[node name="MiddlePoint" type="Sprite" parent="." groups=[
+"MiddlePoint",
+]]
+visible = false
+position = Vector2( 536, 216 )
+texture = ExtResource( 8 )
+centered = false
+
+[node name="PlayerUI" type="Control" parent="."]
+margin_left = 296.0
+margin_top = 40.0
+margin_right = 336.0
+margin_bottom = 80.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FadeIn" type="Sprite" parent="PlayerUI"]
+position = Vector2( 220, 184 )
+scale = Vector2( 1e-05, 1e-05 )
+texture = ExtResource( 12 )
+
+[node name="FadeInAnimationPlayer" type="AnimationPlayer" parent="PlayerUI/FadeIn"]
+anims/FadeOut = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="PlayerUI"]
+position = Vector2( 214.573, 520.117 )
+scale = Vector2( -1041.14, 100.61 )
+texture = SubResource( 2 )
+
+[node name="ZAction" type="Control" parent="PlayerUI"]
+margin_left = 32.0
+margin_top = -16.0
+margin_right = 72.0
+margin_bottom = 24.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ProgressBar" type="ProgressBar" parent="PlayerUI/ZAction"]
+margin_left = 256.0
+margin_top = 512.0
+margin_right = 376.0
+margin_bottom = 544.0
+grow_vertical = 0
+custom_styles/fg = SubResource( 3 )
+custom_styles/bg = SubResource( 4 )
+value = 50.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="Label" parent="PlayerUI/ZAction"]
+visible = false
+margin_left = 244.0
+margin_top = 512.0
+margin_right = 321.0
+margin_bottom = 548.0
+custom_fonts/font = ExtResource( 4 )
+text = "Shoot"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ActionText" type="Label" parent="PlayerUI/ZAction"]
+margin_left = 256.0
+margin_top = 536.0
+margin_right = 365.0
+margin_bottom = 572.0
+custom_fonts/font = ExtResource( 4 )
+text = "B"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ZAnimationPlayer" type="AnimationPlayer" parent="PlayerUI/ZAction"]
+anims/FirePrimary = SubResource( 5 )
+anims/Useable = SubResource( 7 )
+
+[node name="XAction" type="Control" parent="PlayerUI"]
+margin_left = 112.0
+margin_top = -56.0
+margin_right = 152.0
+margin_bottom = -16.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ProgressBar" type="ProgressBar" parent="PlayerUI/XAction"]
+margin_left = 320.0
+margin_top = 552.0
+margin_right = 440.0
+margin_bottom = 584.0
+grow_vertical = 0
+rect_rotation = 0.00269926
+custom_styles/fg = SubResource( 8 )
+custom_styles/bg = SubResource( 4 )
+value = 50.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="Label" parent="PlayerUI/XAction"]
+visible = false
+margin_left = 256.0
+margin_top = 512.0
+margin_right = 329.0
+margin_bottom = 548.0
+custom_fonts/font = ExtResource( 4 )
+text = "slash"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ActionText" type="Label" parent="PlayerUI/XAction"]
+margin_left = 320.0
+margin_top = 576.0
+margin_right = 416.0
+margin_bottom = 612.0
+custom_fonts/font = ExtResource( 4 )
+text = "Bomb"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="XAnimationPlayer" type="AnimationPlayer" parent="PlayerUI/XAction"]
+anims/SpecialAction = SubResource( 9 )
+anims/Useable = SubResource( 11 )
+
+[node name="Health" type="Control" parent="PlayerUI"]
+margin_top = -1.09303e-08
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProgressBar" type="ProgressBar" parent="PlayerUI/Health"]
+margin_left = -280.0
+margin_top = 496.0
+margin_right = 264.0
+margin_bottom = 536.0
+grow_vertical = 0
+custom_styles/fg = SubResource( 12 )
+custom_styles/bg = SubResource( 4 )
+value = 100.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthText" type="Label" parent="PlayerUI/Health/ProgressBar"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 98.0
+margin_bottom = 44.0
+rect_scale = Vector2( 0.75, 0.75 )
+custom_fonts/font = ExtResource( 4 )
+text = "10/10"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerUI/Health"]
+anims/HitAnimation = SubResource( 14 )
+anims/Stable = SubResource( 15 )
+
+[node name="GameText" type="Label" parent="PlayerUI"]
+margin_left = 120.0
+margin_top = 32.0
+margin_right = 289.0
+margin_bottom = 146.0
+custom_fonts/font = ExtResource( 4 )
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite2" type="Sprite" parent="PlayerUI"]
+position = Vector2( 696, -19.6364 )
+scale = Vector2( 2, 1.27273 )
+texture = ExtResource( 12 )
+
+[node name="LevelText" type="Label" parent="PlayerUI"]
+margin_left = 664.0
+margin_top = -40.0
+margin_right = 771.0
+margin_bottom = 27.0
+rect_scale = Vector2( 0.6, 0.6 )
+custom_fonts/font = ExtResource( 4 )
+text = "Floor 0"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RestartButton" type="Button" parent="." groups=[
+"RestartButton",
+]]
+visible = false
+margin_left = 352.0
+margin_top = 256.0
+margin_right = 672.0
+margin_bottom = 296.0
+disabled = true
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="RestartButton"]
+margin_right = 152.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 4 )
+text = "Press Enter to Restart"
+align = 1
+valign = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="RestartButton"]
+position = Vector2( 0, -40 )
+stream = ExtResource( 13 )
+volume_db = -23.728
+
+[node name="GameStartButton" type="Button" parent="." groups=[
+"RestartButton",
+]]
+margin_left = 296.0
+margin_top = 280.0
+margin_right = 308.0
+margin_bottom = 300.0
+disabled = true
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="GameStartButton"]
+visible = false
+position = Vector2( 216, -23.6667 )
+scale = Vector2( 28, 15.9792 )
+texture = ExtResource( 12 )
+
+[node name="Label" type="Label" parent="GameStartButton"]
+margin_left = 88.0
+margin_top = 160.0
+margin_right = 374.0
+margin_bottom = 200.0
+custom_fonts/font = ExtResource( 4 )
+text = "Press [ENTER]  TO START"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="GameStartButton"]
+margin_left = -40.0
+margin_top = -279.333
+margin_right = 246.0
+margin_bottom = -239.333
+rect_scale = Vector2( 2, 2 )
+custom_fonts/font = ExtResource( 4 )
+text = "Rogue Buster"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="GameStartButton"]
+margin_left = -208.0
+margin_top = -96.0
+margin_right = 78.0
+margin_bottom = -56.0
+custom_fonts/font = ExtResource( 4 )
+text = "Controls:
+Z - Primary
+X - Secondary
+Arrow Keys to move"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="GameStartButton"]
+stream = ExtResource( 13 )
+volume_db = -23.728
+
+[node name="SpawnPoint" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 1096, 293.678 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 3 )
+script = ExtResource( 10 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SpawnPoint"]
+anims/SpawnAnimation = SubResource( 16 )
+anims/Stable = SubResource( 17 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 704, 256.376 )
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+position = Vector2( 416, 96 )
+script = ExtResource( 9 )
+
+[node name="Point 7" type="Sprite" parent="SpawnPoints" groups=[
+"Spawn",
+]]
+position = Vector2( 376, 248 )
+texture = ExtResource( 8 )
+centered = false
+[connection signal="animation_finished" from="PlayerUI/FadeIn/FadeInAnimationPlayer" to="." method="_on_FadeInAnimationPlayer_animation_finished"]
+[connection signal="animation_started" from="PlayerUI/FadeIn/FadeInAnimationPlayer" to="." method="_on_FadeInAnimationPlayer_animation_started"]
+[connection signal="pressed" from="RestartButton" to="RestartButton" method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="GameStartButton" to="." method="_on_Game_Start_Button_pressed"]
+[connection signal="CInputUpdate" from="Player" to="PlayerUI" method="_on_Player_CInputUpdate"]
+[connection signal="HealthUpdate" from="Player" to="PlayerUI" method="_on_Player_HealthUpdate"]
+[connection signal="PlayerDeath" from="Player" to="." method="_on_Player_PlayerDeath"]
+[connection signal="VInputUpdate" from="Player" to="PlayerUI" method="_on_Player_VInputUpdate"]
+[connection signal="XInput" from="Player" to="." method="_on_Player_XInput"]
+[connection signal="XInputUpdate" from="Player" to="PlayerUI" method="_on_Player_XInputUpdate"]
+[connection signal="ZInput" from="Player" to="." method="_on_Player_ZInput"]
+[connection signal="ZInputUpdate" from="Player" to="PlayerUI" method="_on_Player_ZInputUpdate"]
